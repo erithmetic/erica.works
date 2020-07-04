@@ -1,0 +1,57 @@
+---
+layout: post
+title:  "Carbon.js"
+date: 2011-03-18 12:00:00 -0500
+categories: 
+---
+
+Lately, I&#8217;ve been working on a Google Maps mashup that calculates CO2 emissions for automobile, bus, and rail trips. Since Google Maps has such a great JavaScript API, I decided to write the application almost entirely in JavaScript. Thus, <a href="http://github.com/dkastner/Carbon.js">Carbon.js</a> was born!
+
+Carbon.js makes it simple to calculate emissions. Its design is similar to the Ruby <a href="http://rubygems.org/gems/carbon">carbon gem</a>. For any class that represents an &#8220;emission activity&#8221;, e.g. an <a href="http://carbon.brighterplanet.com/models/automobile_trip">automobile trip</a>, you can extend it with Carbon.js to give it the ability to perform calculations.
+
+Let&#8217;s look at an example.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">RentalCar</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+</span><span class='line'><span class="nx">Carbon</span><span class="p">.</span><span class="nx">emitter</span><span class="p">(</span><span class="nx">RentalCar</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">emitter</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">emitter</span><span class="p">.</span><span class="nx">emitAs</span><span class="p">(</span><span class="s1">&#39;automobile&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">emitter</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;make_model&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">emitter</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;weekly_distance&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">emitter</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;timeframe&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">focus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RentalCar</span><span class="p">;</span>
+</span><span class='line'><span class="nx">focus</span><span class="p">.</span><span class="nx">make_model</span> <span class="o">=</span> <span class="s1">&#39;Ford Focus&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">focus</span><span class="p">.</span><span class="nx">weekly_distance</span> <span class="o">=</span> <span class="mi">436</span><span class="p">;</span>
+</span><span class='line'><span class="nx">focus</span><span class="p">.</span><span class="nx">timeframe</span> <span class="o">=</span> <span class="s1">&#39;2010-03-08/2010-03-14&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">focus</span><span class="p">.</span><span class="nx">getEmissionEstimate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">estimate</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;My Focus&#39; emissions for the rental period of March 8th-14th are: &quot;</span> <span class="o">+</span> <span class="nx">estimate</span><span class="p">.</span><span class="nx">value</span><span class="p">());</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+As you can see, the configuration defined in the <code>Carbon.emitter</code> call maps properties on an instance of RentalCar to characteristics defined in automobile&#8217;s <a href="http://carbon.brighterplanet.com/automobiles/options">characteristics API</a>. In order to calculate emissions, a call to <code>getEmissionEstimate</code> with a callback function parameter is required. Within that callback, you can update HTML on a page with the result.
+
+<h2>Future Improvements</h2>
+
+<ul>
+<li>Carbon only maps properties of an object to characteristics. It will be simple to allow an instance function to be mapped to a characteristic.</li>
+<li>Carbon.js requires that you use jQuery. One improvement would be to use platform-agnostic <a href="http://en.wikipedia.org/wiki/XHR">XHR</a> and <a href="http://api.jquery.com/jQuery.proxy/">proxy</a> functions, or intelligently detect available libraries, like Prototype, MooTools, etc.</li>
+<li>For <a href="http://en.wikipedia.org/wiki/DRY">DRY</a>ness sake, Carbon.js operates on classes. It may be helpful to be able to decorate any JavaScript object on the fly.</li>
+</ul>
+

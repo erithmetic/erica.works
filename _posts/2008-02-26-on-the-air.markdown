@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "On the Air"
+date: 2008-02-26 12:00:00 -0600
+categories: 
+---
+
+It&#8217;s official!  This last Saturday, I hopped over to Grand Rapids, got to the Apple Store as it opened, and made use of my MSU ID (good as gold!) to purchase a brand new MacBook Air.
+
+As I stated in a previous post, I realized that top-of-the-line performance was not a major factor for me and I liked the ultra-portability it offered.  Plus, the price was just right.  So far, I&#8217;ve just been setting up apps and moving over data, but it is plenty speedy.  The only time I&#8217;ve run into slowdowns is when copying files over the network while running iPhoto from a shared network and copying files from an external hard drive.  Otherwise, it&#8217;s been running SO much faster than my PowerBook G4.
+
+I haven&#8217;t done any web development on it yet, so I&#8217;ll throw up a post when that happens.
+
+My comments so far:
+
+* The build quality is absolutely the best I&#8217;ve seen in a Mac.  It&#8217;s rock solid and there are no gaps in the seams of the case.
+* It&#8217;s very lightweight!  I hardly notice I&#8217;m using a laptop.  It&#8217;s like a natural extension of my body.
+* MagSafe is a GodSend.
+* The function keys are all messed up..but getting used to it.  The modifier keys combined with the expose key replace F9-F11.
+* The black keys make the back-lit keyboard much more functional.  With the PowerBooks, there wasn&#8217;t enough contrast between the silver keys and the white lit letters to make the lighting effective, except in pitch black.
+* I&#8217;m not missing the CD/DVD drive.
+* I&#8217;m not missing FireWire&#8230;yet
+* The monaural speaker is on the right side and sort of causes an imbalance when sounds are played - makes you think something is coming at you from the side.  Freaky!
+* The iPhone-like touchpad is awesome.  Three-finger swipe to go back/forward in Safari!  The system preferences also shows videos of all the different &#8220;moves.&#8221;
+
+This really is the ninja&#8217;s laptop!  The MacBook Pro/PowerBook is more of an armored knight.

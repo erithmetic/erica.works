@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Fab new gear"
+date: 2006-05-22 12:00:00 -0500
+categories: 
+---
+
+Jeremy up and gave me his old <a href="http://www.lowendmac.com/imacs/400.shtml">G3 iMac</a> that was sitting around.  He said he didn&#8217;t want to invest the time to get OS X running on it (since it needed a firmware update).  I gladly took it from him and set it up this weekend.  It turns out it didn&#8217;t need the firmware update after all!  It&#8217;s a 400MHz G3 and it came with 384MB of RAM and a 10GB hard disk.  It came with OS 9.1 on it, so I upgraded it to OS 9.2.2 and installed OS X 10.4.  Amazingly, 10.4 works great on it, in lieu of the fact that it&#8217;s 6 years old.  It&#8217;ll be great to have a machine with OS 9 on it for Julie&#8217;s older music software.  My challenge now is to get my <a href="http://www.motu.com/products/midi/fastlane_usb">MOTU Fastlane</a> USB  MIDI adapter working on it so she can plug it into the piano and write music using the keyboard.
+
+All of the software updates were performed at my parents&#8217; house.  When I got it home last night, I pulled a 256MB stick of RAM from my old PC and popped it into the iMac.   Voila!  Now it has 512MB of RAM!  I also pulled the Airport card from my iBook/web server to put into the iMac.  However, the iMac needs a special daughter card to allow you to plug in the Airport PCMCIA card.  I ordered the daughter card last night so it should get here in a few days.
+
+Last week, I also purchased a new 100GB, 7200RPM hard drive for my PowerBook to replace its old <em>4200RPM</em>, 80GB drive.  It became clear that I need a way to back up my 27GB of music and 11GB of photos.  The drive actually became corrupted at one point and I was lucky enough to be able to boot my PowerBook into <a href="http://docs.info.apple.com/article.html?artnum=58583">target disk mode</a> and copy all my music and photos to Julie&#8217;s iBook.  I decided I would get a new drive for my laptop and put its old drive into an external firewire enclosure as a backup drive.
+
+I had started to replace the drive last week, but it was fruitless.  The last two screws holding in the drive were screwed <em>way</em> too tight, causing me to strip the heads of the screws, rendering them useless.  I tried epoxy-ing some screws on top of the tight screws in the hopes of being able to turn the tight screws using fresh, epoxied-on screws, but that didn&#8217;t work.  I took my PowerBook to my parents&#8217; place on Saturday, and my dad took a dremel to it and ground a new slot into one of the screws and ground the head completely off of the other.  Mission accomplished!  My PowerBook now blazes its way through the arduous tasks I throw at it.  It really does make a huge difference.  I just can&#8217;t believe Apple is still only offering 5400RPM drives as standard in their new MacBook Pros.  There&#8217;s really no reason to not use a 7200RPM drive.  Especially if you&#8217;re into video.

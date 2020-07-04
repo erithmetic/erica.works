@@ -1,0 +1,31 @@
+---
+layout: post
+title:  "Word Up"
+date: 2006-04-25 12:00:00 -0500
+categories: 
+---
+
+Something that&#8217;s annoyed me lately:  You check your email and open a message from someone.  The message is a memo about something or a laundry list of tasks to complete.  Instead of just writing the memo or the list of tasks in the email, the sender insists on putting it inside of a Word document.
+
+The whole reason we have HTML-formatted email is so people can write out their pretty lists and images within an email, without forcing the receiver to open a $100 application just to read your message.
+
+So, please, before you type up that memo in Word, ask yourself: do I <em>really</em> need to use Word?
+
+Here are some pros and cons of using Word:
+
+Pros:
+
+* Word has fancy features for tables of contents, bookmarks, page numbering and headers, etc.
+* Word is great for very large documents
+* Word is great for &#8220;official&#8221; documents, like reports and application requirements documents
+
+
+Cons:
+
+* Your recipient must have a program that will open Word files
+* Your recipient will be forced to save the file to their local disk, then open wait while Word opens the file
+* Word files can carry viruses on Windows machines
+* Word files consume more disk space than HTML emails
+* You can use your email program to search through all your emails for things, instead of having to rely on Google Desktop Search or Windows File Search or searching through each Word document, one at a time
+
+Not directed at anyone specific, just venting :)

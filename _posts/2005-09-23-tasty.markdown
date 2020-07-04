@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "Tasty!"
+date: 2005-09-23 12:00:00 -0500
+categories: 
+---
+
+<a href="http://uvageek.net">Dan</a> was kind enough to point me to <a href="http://del.icio.us">del.icio.us</a>.  It took me a while to find out that del.icio.us = Delicious!  Well, it certainly is quite a tasty site.  You can <a href="http://www.kriskrug.com/?p=276">download a small utility</a> for your browser (usually it&#8217;s a bookmark) so that when you&#8217;re on a page you like, click the bookmark and fill out a small form to add it to your list of delicious links.
+
+You&#8217;ll notice at the bottom of my side bar, I have a feed of my latest delicious links.
+
+It works in a manner similar to <a href="http://www.flickr.com">Flickr</a>.  You manage your links using tags.  It looks like tagging is all the rage among bloggers now.  <a href="http://www.flickr.com/photos/tags/">Tag your photos</a>, <a href="http://www.technorati.com/help/tags.html">tag your blog entries</a>, <a href="http://del.icio.us/doc/about">tag your links</a>&#8230;.what next?
+
+What&#8217;s interesting is this concept has been around since the days of the <a href="http://en.wikipedia.org/wiki/Meta_tag">librarian and HTML itself</a>.  A coworker of mine gave me a book about Information Architecture, and in it they talk about labeling data, but they stress the importance of a standardized vocabulary.  For instance, if I&#8217;m looking for &#8220;Volvo&#8221; I would think to look under the &#8220;Cars&#8221; tag, while Joe might think to look under &#8220;Automobiles.&#8221;  I can see where all of this tagging could be a problem for people looking through Google or some other multi-site search engine.  We already see this problem on Flickr.  I may have tagged a picture of the Capitol with &#8220;Washington&#8221; and &#8220;DC&#8221;, while someone else might tag it with &#8220;WashingtonDC&#8221;.  However, it seems to work well within the context of a single blog or a single Flickr page.  The author of the blog and the photographer have self-limited their vocabularies.
+
+Sometimes I think I should have gone to school to be a <a href="http://alexia.lis.uiuc.edu/gslis/index.html">Librarian</a>.  It&#8217;s fascinating!  I love organizing things like books, CDs, databases, etc.  But I hate cleaning my house.  Go figure!

@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "SQL"
+date: 2007-09-18 12:00:00 -0500
+categories: 
+---
+
+One thing that&#8217;s always bothered me is when people pronounce &#8220;SQL&#8221; as &#8220;sequel.&#8221;  Where did this come from?  I prefer to spell it out and say &#8220;ess kew ell&#8221; and I think it probably annoys people who say &#8220;sequel.&#8221;  I was reading about a new technology called SPARQL, which Wikipedia says is pronounced, &#8220;sparkle.&#8221;  Then I got to thinking: wouldn&#8217;t it be more logical to pronounce SQL as &#8220;sickle?&#8221;

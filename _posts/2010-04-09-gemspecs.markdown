@@ -1,0 +1,64 @@
+---
+layout: post
+title:  "Gemspecs"
+date: 2010-04-09 12:00:00 -0500
+categories: 
+---
+
+I don&#8217;t follow Yehuda Katz&#8217; blog (though I should) but he <a href="http://yehudakatz.com/2010/04/02/using-gemspecs-as-intended/">posted an article</a> on basic gem configuration and build steps.  It irks me to no end when I clone a git repo and run through the following process:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&gt; gem build somegem.gemspec
+</span><span class='line'>&gt; gem install ./
+</span><span class='line'><span class="o">[</span>write code using gem<span class="o">]</span>
+</span><span class='line'>&gt; run code
+</span><span class='line'><span class="c">#ERROR# some gem code is missing a file in &quot;require_once&quot;</span>
+</span><span class='line'>&gt; ls /path/to/gem/file/that/is/missing
+</span><span class='line'>File not found:  /path/to/gem/file/that/is/missing
+</span><span class='line'>&gt; <span class="nb">cd</span> /path/to/gem/repo
+</span><span class='line'>&gt; ls  /path/to/gem/repo/path/to/gem/file/that/is/missing
+</span><span class='line'>missing.rb
+</span><span class='line'>&gt; rake build
+</span><span class='line'><span class="c">#ERROR# missing gem my_crappy_test_library</span>
+</span><span class='line'>&gt; gem install my_crappy_test_library
+</span><span class='line'>&gt; rake build
+</span><span class='line'><span class="c">#ERROR# missing gem my_crappy_mock_library</span>
+</span><span class='line'>&gt; rake build
+</span><span class='line'>OK
+</span><span class='line'>&gt; gem install pkg/
+</span></code></pre></td></tr></table></div></figure>
+
+
+When it could simply be:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&gt; gem build somegem.gemspec
+</span><span class='line'>&gt; gem install ./
+</span><span class='line'><span class="o">[</span>write code using gem<span class="o">]</span>
+</span><span class='line'>&gt; run code
+</span></code></pre></td></tr></table></div></figure>
+
+
+The first scenario happens when someone uses a tool like jeweler to build their gemspec and forgets to commit the latest generated (or what should have been generated) gemspec.  Jewler likes to list every single file packaged with the gem, so the gemspec must be refreshed whenever a file is added or removed.  When writing a gemspec by hand one, can simply say &#8220;all the files in the lib directory are part of this gem.&#8221;  You can use a handy tool like a .gitignore to prevent unwanted files from appearing in your gem.
+
+Why is this such a big issue?  Because, as Yehuda wrote, writing your own gemspec isn&#8217;t that hard.  In fact, it&#8217;s kind of enjoyable, being that it&#8217;s a Ruby DSL.  Ruby was designed to cause the lowest amount of pain for developers.  Our Ruby code should reflect that ethos.

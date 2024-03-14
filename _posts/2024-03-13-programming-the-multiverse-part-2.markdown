@@ -49,6 +49,6 @@ So from the above diagram we'd read the values of `c0` and `c1` and get `00` bec
 
 ### SWAP Gate
 
-![Alt text](../images/multiverse-part-2/quantum-swap-gate.png){: height="200" }
+![Alt text](../images/multiverse-part-2/quantum-swap-gate.jpg){: height="200" }
 
 A swap gate is very simple. It simply swaps the inputs. If `q0` is $$\ket{1}$$ and `q1` is $$\ket{0}$$ then after the gate `q0` becomes $$\ket{0}$$ and `q1` becomes $$\ket{1}$$. Our registers would read `01` after the measurements.

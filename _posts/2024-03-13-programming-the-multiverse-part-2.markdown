@@ -5,7 +5,15 @@ date: 2024-03-13 21:12:17 -0500
 categories: quantum_computing
 ---
 
-We're going to start with some basics. I mean, suuuuper basic. But it's an important first step. Many quantum computers today act as FPGAs - like hardware that you can program. The most popular way to write quantum algorithms these days is to use a library like Qiskit to define a quantum circuit. This circuit can then be "transpiled" and run on a real quantum computer hosted by IBM or Google. You can also just run your circuit in a simulator that runs on your local machine. There are some programming languages emerging for defining quantum algorithms but they're pretty esoteric.
+In part 2 we'll go over some very simple quantum gates and explore our first concept that makes quantum computing "quantum" &mdash; Superposition.
+
+_Note: this post is part of my series, [Programming the Multiverse](/programming-the-multiverse-part-1/)_
+
+We're going to start with some basics. I mean, suuuuper basic. But it's an important first step. The way most people interact with quantum computers do so in a way that is similar to FPGAs in the classic world - i.e. hardware that you can program. The most popular way to write quantum algorithms these days is to use a library like Qiskit to define a quantum circuit. This circuit can then be "transpiled" and run on a real quantum computer. You can also just run your circuit in a simulator that runs on your local machine.
+
+At this point in time, we mostly work on the level of piecing together logic gates, as if we're building hard-wired circuits for single-purpose machines. There are not any widely-used "programming languages" for quantum computing. The languages that do exist tend to be pretty esoteric.
+
+So let's review logic gates in the classic world.
 
 ## Ye olde logick gates
 
@@ -17,25 +25,21 @@ This logical gate transforms a single bit, 0 into a 1 or a 1 into a 0. It's one 
 
 In classical computers, in a sense the _data_ is moving around through the gates. You can think of each gate as a function that takes data in, may modify it, then output a data result. For example, a NOT gate can be though of as a function `not(x)` where `not(0) == 1` and `not(1) == 0`. The functions combine into higher order functions that may represent mathematical operations or hardware commands.
 
-<!-- ![A circuit diagram for a NOT gate](../images/multiverse-part-2/transistor-not.jpg)
-
-Above is a circuit diagram for a NOT gate (one of many implementations). If you remember your computer engineering, a computer system represents the value "0" as a lower voltage amount coming down a circuit wire. A "1" is a higher voltage. The NOT gate takes a low voltage as input and in turn outputs a higher voltage. The opposite happens if a high voltage is input. -->
-
 ![Logical gates combined into an adder](../images/multiverse-part-2/logic-gates-vlsi.png)
 
 Utlimately these logic gates form the thousands of building blocks that combine into our modern day, general purpose "integrated circuits" (e.g. CPUs). Our modern programming languages define a series of signals that get sent through this maze of gates. But it's important to note that every integrated circuit can implement the same logical gates using different types of electrical circuits.
 
 ## The fancy new quantum gates
 
-You've seen how logic gates work in classical computers operating on bits of information represented by electrical pulses. But we need to completely forget about all of that. We're in quantum world now! Starting out, QC and classical will seem similar, but we'll see that QC is a complete shift in how we think of computing.
+You've seen how logic gates work in classical computers operating on bits of information represented by electrical pulses. But we need to completely forget about all of that. We're in quantum world now! Starting out, QC and classic logic gates will seem similar, but we'll see that QC is a complete shift in how we think of computing.
 
-Now let's dive into some of the foundational quantum gates. For now we're just going to focus on their behavior but just know that the way these logical gates are implemented in actual quantum coputers vary.
+Now let's dive into some of the foundational quantum gates. For now we're just going to focus on their behavior but just know that the way these logical gates are implemented in actual quantum coputers vary and are still under constant development and innovation.
 
 ### Quantum circuit diagrams
 
 ![A basic quantum circuit diagram](../images/multiverse-part-2/basic-circuit-diagram.png){: height="200" }
 
-Here is the most basic quantum circuit diagram in the world. It does absolutely nothing, except measure the values to two qubits. Let's break it down:
+Here is the most basic quantum circuit diagram in the world. It does absolutely nothing, except measure the values of two qubits. Let's break it down:
 
 `q0` and `q1` are two qubits. By convention, they are intialized to $$\ket{0}$$.
 
@@ -49,6 +53,32 @@ So from the above diagram we'd read the values of `c0` and `c1` and get `00` bec
 
 ### SWAP Gate
 
-![Alt text](../images/multiverse-part-2/quantum-swap-gate.jpg){: height="200" }
+![SWAP Gate](../images/multiverse-part-2/quantum-swap-gate.jpg){: height="200" }
 
 A swap gate is very simple. It simply swaps the inputs. If `q0` is $$\ket{1}$$ and `q1` is $$\ket{0}$$ then after the gate `q0` becomes $$\ket{0}$$ and `q1` becomes $$\ket{1}$$. Our registers would read `01` after the measurements.
+
+### CNOT Gate
+
+The CNOT is similar to your familiar old NOT gate. However, it has some special behaviors that we'll cover later. For now, just know that it has a special "control" input that tells the gate whether to actually perform the NOT operation.
+
+![CNOT Gate](../images/multiverse-part-2/cnot.png){: height="200" }
+
+In the example above, `q0` is set to $$\ket{1}$$ and is sent to the "control" input of the gate. `q1` is set to $$\ket{0}$$ and is sent to the operand input. The result is that `q1` changes to $$\ket{1}$$. If `q0` were set to $$\ket{0}$$ then `q1` would remain $$\ket{0}$$.
+
+### H Gate
+
+The H Gate, also known as the Hadamard gate, does something interesting.
+
+![H Gate](../images/multiverse-part-2/h-gate.png){: height="200" }
+
+By default, qubit `q0` is set to $$\ket{0}$$. If we were to run this circuit once, when we measure it we may get a $$\ket{0}$$, but we may also randomly get a $$\ket{1}$$. If you run this circuit repeatedly, about 50% of the time you get one result or the other. In a way this is like a random number generator, but behind the scenes, the H gate puts the qubit into **Superposition**.
+
+One of the unique behaviors of quantum physics is that certain particles, for example electrons, are in an unknown state until we "measure" that thing. What do we mean by "measure?" Well that is an enormous philosophical question we don't have time for here.
+
+![Measuring an electron](../images/multiverse-part-2/electron.jpg){: height="200" }
+
+But to simplify, for an electron orbiting an atomic nucleus, we don't know the actual position of that electron until we fire a laser at it ("measure" it) and read how the field of the electron altered the course of photons emitted by the laser. But we only know the position in that moment of time. We can measure this electron multiple times and get a probability distribution of where that electron tends to be located.
+
+So to recap, the H gate takes our qubit that has a known state, either $$\ket{0}$$ or $$\ket{1}$$, and puts it into an unknown state, where if measured, will give us a 50% chance of getting a $$\ket{0}$$ or $$\ket{1}$$.
+
+And that's it! These are the building blocks to creating all kinds of fun quantum circuits. In the next part, we'll dig into some simple mathematical notation to represent qubits and superposition.

@@ -20,22 +20,11 @@ avatar: /images/icon.png
 
 # Includes an icon in the footer for each username you enter
 footer-links:
-  dribbble:
   email: info@erica.works
-  facebook:
-  flickr:
   github: erithmetic
   instagram: ericascape
   linkedin: erithmetic
-  pinterest:
   rss: rss
-  twitter: ericascape
-  stackoverflow: 
-
-
-# Enter your Disqus shortname (not your username) to enable commenting on posts
-# You can find your shortname on the Settings page of your Disqus account
-disqus: 
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: UA-171652423-1
@@ -68,7 +57,7 @@ kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     # Use existing pygments syntax highlighting css
-    css_class: 'highlight'
+    css_class: "highlight"
 
 # Set the Sass partials directory, as we're using @imports
 sass:
@@ -81,7 +70,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
 
-include: ['_pages']
+include: ["_pages"]
 
 paginate: 6
 paginate_path: /blog/page:num/
@@ -93,4 +82,3 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
-

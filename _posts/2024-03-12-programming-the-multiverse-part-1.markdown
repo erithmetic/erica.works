@@ -32,3 +32,4 @@ So prepare for a mind-bending ride!
 ## Table of Contents
 
 - [Part 2 - Some Basic Gates](/programming-the-multiverse-part-2/)
+- [Part 3 - Superposition and Probability](/programming-the-multiverse-part-3/)

@@ -9,7 +9,7 @@ Welcome to _Programming the Multiverse_, a blog series introduction to quantum c
 
 If you're familiar with programming with classical languages, such as Python, Ruby, or Java, and you have seen binary logic gates (NOT, OR, AND) before, this guide is for you!
 
-The goal of this series is to get you familiar with how quantum algorithms work and have some fun with some programming problems. The intention is to introduce topics gently and intuitively, rather than using lots of jargon, diving straight into Bloch Spheres, or showing off fancy equations.
+The goal of this series is to get you familiar with how quantum algorithms work and have some fun with some programming problems. The intention is to introduce topics gently and intuitively, rather than using lots of jargon, diving straight into Bloch Spheres, or showing off fancy equations (we'll keep them super simple).
 
 ## What is Quantum Computing?
 

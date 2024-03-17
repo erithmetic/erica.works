@@ -86,3 +86,7 @@ Let's say we use a 6-sided die to represent a qubit. And imagine it's constantly
 So to recap, the H gate takes our qubit that has a known state, either $$\ket{0}$$ or $$\ket{1}$$, and puts it into an unknown state, where if measured, will give us a 50% chance of getting a $$\ket{0}$$ or $$\ket{1}$$.
 
 And that's it! These are the building blocks to creating all kinds of fun quantum circuits. In the next part, we'll dig into more quantumness and some simple mathematical notation to represent qubits.
+
+![Scenes from the movie "Everything, Everywhere, All at Once"](../images/multiverse-part-2/everything.png){: height="200" }
+
+But please beware! Any time we put a qubit into superposition and measure it, we are creating two new universes, one where the qubit is 0 and the other where it is 1. So please limit this operation so that the multiverse doesn't run out of memory 😅

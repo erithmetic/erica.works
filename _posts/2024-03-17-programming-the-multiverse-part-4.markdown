@@ -185,7 +185,7 @@ $$
 0\ket{00} + 1\ket{01} + 0\ket{10} + 0\ket{11}
 $$
 
-Which means our two qubits are:
+This means we have a 100% chance of a combination of 0 and 1, Which means our two qubits are:
 
 $$q_0 = \ket{0}$$
 

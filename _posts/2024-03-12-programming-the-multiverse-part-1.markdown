@@ -33,3 +33,4 @@ So prepare for a mind-bending ride!
 
 - [Part 2 - Some Basic Gates](/programming-the-multiverse-part-2/)
 - [Part 3 - Superposition and Probability](/programming-the-multiverse-part-3/)
+- [Part 4 - The Guts of Gates](/programming-the-multiverse-part-4/)

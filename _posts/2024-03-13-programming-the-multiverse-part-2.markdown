@@ -23,7 +23,21 @@ You may remember these logical gate diagrams, like for the NOT gate:
 
 This logical gate transforms a single bit, 0 into a 1 or a 1 into a 0. It's one of the basic building blocks of every CPU and computing device. Bits are combined to represent bytes of data and the logical gates "move the bits around" to transform the data.
 
-In classical computers, in a sense the _data_ is moving around through the gates. You can think of each gate as a function that takes data in, may modify it, then output a data result. For example, a NOT gate can be though of as a function `not(x)` where `not(0) == 1` and `not(1) == 0`. The functions combine into higher order functions that may represent mathematical operations or hardware commands.
+There's even a whole set of math to represent these "bitwise" operations &mdash; AND, OR, NOT, XOR, etc. all have special boolean algebra operators that describe them:
+
+#### AND Operation:
+
+$$0 \wedge 1 = 0$$
+
+$$1 \wedge 1 = 1$$
+
+#### XOR Operation:
+
+$$0 \oplus 1 = 1$$
+
+$$1 \oplus 1 = 0$$
+
+In classical computers, in a sense the _data_ is moving around through the gates. You can think of each gate as a function that takes data input, may modify it, then output a result. For example, a NOT gate can be though of as a function `not(x)` where `not(0) == 1` and `not(1) == 0`. The functions combine into higher order functions that may represent mathematical operations or hardware commands.
 
 ![Logical gates combined into an adder](../images/multiverse-part-2/logic-gates-vlsi.png)
 
@@ -45,7 +59,7 @@ Here is the most basic quantum circuit diagram in the world. It does absolutely 
 
 Whoah, wait a minute! What's this $$\ket{0}$$ thing? Well for now you can think of it just like a regular binary 0 from the classical world. $$\ket{1}$$ represents a 1. It's pronounced "ket-zero" or "ket-one."
 
-Back to the diagram, the `c` represents our "classical register." You can think of this like the wire where our classical computer will read from to get results from our computation. There's only one way to get data from a qubit - that is to "measure it." That is what those meter icons represent. You measure a qubit and the result gets sent to the classical register. This touches on a core feature of quantum computing - the idea of superposition, measurement, and killing Schrödinger's cat - but we'll get to that in the future.
+Back to the diagram, the `c` represents our "classical register." You can think of this like the wire where our classical computer will read from to get results from our computation. There's only one way to get data from a qubit - that is to "measure it." That is what those meter icons represent. You measure a qubit and the result gets sent to the classical register. This touches on a core feature of quantum computing - the idea of superposition, measurement, and risking the life of Schrödinger's cat - but we'll get to that in the future.
 
 For now, you can think of us measuring qubit `q0` and outputing the result to classical register `c0`, as well as measuring qubit `q1` and putting the result in register `c1`. Our old classical computers can then read from the register to get our results.
 

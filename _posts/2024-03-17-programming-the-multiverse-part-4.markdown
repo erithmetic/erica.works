@@ -95,7 +95,7 @@ $$
 To get the second cell in $$C$$ we operate on row 2 of the gate matrix:
 
 $$
-C_{2,1} = (A_{2,1} \times B_{2,1}) + (A_{2,2} \times B_{2,1})
+C_{2,1} = (A_{2,1} \times B_{1,1}) + (A_{2,2} \times B_{2,1})
 $$
 
 If you, like me, get sick of doing matrix multiplication by hand, you can use one of many [online tools](https://matrix.reshish.com/multCalculation.php) or use a programming language like [Ruby](https://ruby-doc.org/stdlib-2.5.1/libdoc/matrix/rdoc/Matrix.html) or Python that have great matrix support.

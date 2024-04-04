@@ -19,13 +19,13 @@ Anything that uses the term "quantum" means using some of the special properties
 
 Classical computers are great when you want to perform a scripted task quickly. They excel at CRUD operations - creating, reading, updating, and deleting data.
 
-## Quantum computers are weird, but...probably useful for something?
+## Quantum computers are weird, and...probably useful for something?
 
-QC has traditionally been a hammer in search of nails, but some uses are slowly emerging. AI and QC seem to be a promising match. But honestly it's just a really fun way to approach problems. Instead of scripting out a process, QC finds optimal paths through forests of data. Whereas classical computers try to Hulk Smash their way into a building, QC tries all the possible secret entrances simultaneously.
+QC has traditionally been a hammer in search of nails, but some uses are slowly emerging. AI and QC seem to be a promising match as well as optimizing logistical problems. Instead of scripting out a process in steps, QC finds optimal paths through forests of data. Whereas classical computers try to Hulk Smash their way into a building, QC tries all the possible secret entrances simultaneously. But quantum computers are also a little flakey at the moment. Today they require strategies to reduce "noise" and multiple runs to get a set of results that give you an "average" answer.
 
 ## Wait what does the Multiverse have to do with this?
 
-One explanation for how quantum mechanics operates (the ["Many Worlds" interpretation](https://en.wikipedia.org/wiki/Many-worlds_interpretation)) states that every moment of reality results from every individual quantum particle "entangling" with another. Since this entanglement can happen in any number of ways, every possible way they entangle actually happens and plays out in an infinite number of parallel universes. You just happen to be traveling down a certain strand of reality.
+One explanation for how quantum mechanics operates (the ["Many Worlds" interpretation](https://en.wikipedia.org/wiki/Many-worlds_interpretation)) states that every possible thing that can happen is randomly chosen and plays out in an infinite number of parallel universes. You just happen to be traveling down a certain strand of reality. With quantum computing, we get to "harness" this quantum randomness to solve unique problems.
 
 So prepare for a mind-bending ride!
 

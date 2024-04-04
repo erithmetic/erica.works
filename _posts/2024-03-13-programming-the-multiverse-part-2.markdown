@@ -49,7 +49,7 @@ $$1 \oplus 1 = 0$$
 
 ### Combining gates
 
-We can combine the XOR and AND to get an adder! First, let's see what happens when we add two bits:
+We can combine the XOR and AND gates to build a very simple computer that adds bits! First, let's see what happens when we mathematically add two binary bits:
 
 $$ 0 + 0 = 00 $$
 

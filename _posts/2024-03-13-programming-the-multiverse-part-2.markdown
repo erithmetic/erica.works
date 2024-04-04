@@ -21,27 +21,70 @@ You may remember these logical gate diagrams, like for the NOT gate:
 
 ![A logical NOT gate symbol](../images/multiverse-part-2/not-gate.png)
 
-This logical gate transforms a single bit, 0 into a 1 or a 1 into a 0. It's one of the basic building blocks of every CPU and computing device. Bits are combined to represent bytes of data and the logical gates "move the bits around" to transform the data.
+This logical gate transforms a single bit, 0 into a 1 or a 1 into a 0. It's one of the basic building blocks of every CPU and computing device. Bits are combined to represent bytes of data which ultimately represent numbers and characters.
 
-There's even a whole set of math to represent these "bitwise" operations &mdash; AND, OR, NOT, XOR, etc. all have special boolean algebra operators that describe them:
+### AND Gate:
 
-#### AND Operation:
+The AND gate outputs a 1 only if both inputs are a 1.
+
+![A logical AND gate symbol](../images/multiverse-part-2/and-gate.png)
+
+$$0 \wedge 0 = 0$$
 
 $$0 \wedge 1 = 0$$
 
 $$1 \wedge 1 = 1$$
 
-#### XOR Operation:
+### XOR Gate:
+
+The XOR (exclusive OR) gate outputs a 1 if only one of the inputs is a 1.
+
+![A logical XOR gate symbol](../images/multiverse-part-2/xor-gate.png)
+
+$$0 \oplus 0 = 0$$
 
 $$0 \oplus 1 = 1$$
 
 $$1 \oplus 1 = 0$$
 
-In classical computers, in a sense the _data_ is moving around through the gates. You can think of each gate as a function that takes data input, may modify it, then output a result. For example, a NOT gate can be though of as a function `not(x)` where `not(0) == 1` and `not(1) == 0`. The functions combine into higher order functions that may represent mathematical operations or hardware commands.
+### Combining gates
 
-![Logical gates combined into an adder](../images/multiverse-part-2/logic-gates-vlsi.png)
+We can combine the XOR and AND to get an adder! First, let's see what happens when we add two bits:
+
+$$ 0 + 0 = 00 $$
+
+$$ 0 + 1 = 01 $$
+
+$$ 1 + 0 = 01 $$
+
+$$ 1 + 1 = 10 $$
+
+Here is the logical gate diagram for an adder:
+
+![A logical XOR gate symbol](../images/multiverse-part-2/adder-gate.png)
+
+Our adder takes two inputs, A, and B, which represent each input bit. There are two output bits because adding 1 and 1 gives us a 2-bit result. For a result representing the binary value `10` C will be the first digit, `1`, in the result, and S will be the second digit, `0`. For a result of `01`, C will be `0` and S will be `1`.
+
+Here are the results of running the binary adder:
+
+| A   | B   | C   | S   |
+| --- | --- | --- | --- |
+| 0   | 0   | 0   | 0   |
+| 0   | 1   | 1   | 0   |
+| 1   | 0   | 1   | 0   |
+| 1   | 1   | 1   | 1   |
+
+Go ahead and trace the result of each gate given each combination of 0 and 1 for A and B and see what you get.
+
+### Data flow in logic gates
+
+In classical computers, in a sense you can say the _data_ is moving around through the gates. You can think of each gate as a function that takes data input, may modify it, then output a result.
+
+![Logical gates combined into a large component](../images/multiverse-part-2/logic-gates-vlsi.png)
 
 Utlimately these logic gates form the thousands of building blocks that combine into our modern day, general purpose "integrated circuits" (e.g. CPUs). Our modern programming languages define a series of signals that get sent through this maze of gates. But it's important to note that every integrated circuit can implement the same logical gates using different types of electrical circuits.
+
+A classical computer is limited in how many of these gate operations it can perform per second. For example an Intel i9 14900HX can run these gate operations up to 5,800,000,000 times per second. There is an upper limit on how many calculations a CPU can try per second to try and solve a problem.
 
 ## The fancy new quantum gates
 
@@ -55,21 +98,30 @@ Now let's dive into some of the foundational quantum gates. For now we're just g
 
 Here is the most basic quantum circuit diagram in the world. It does absolutely nothing, except measure the values of two qubits. Let's break it down:
 
-`q0` and `q1` are two qubits. By convention, they are intialized to $$\ket{0}$$.
+$$q_0$$ and $$q_1$$ are two qubits. By convention, they are intialized to $$\ket{0}$$.
 
 Whoah, wait a minute! What's this $$\ket{0}$$ thing? Well for now you can think of it just like a regular binary 0 from the classical world. $$\ket{1}$$ represents a 1. It's pronounced "ket-zero" or "ket-one."
 
-Back to the diagram, the `c` represents our "classical register." You can think of this like the wire where our classical computer will read from to get results from our computation. There's only one way to get data from a qubit - that is to "measure it." That is what those meter icons represent. You measure a qubit and the result gets sent to the classical register. This touches on a core feature of quantum computing - the idea of superposition, measurement, and risking the life of Schrödinger's cat - but we'll get to that in the future.
+Back to the diagram, the `c` represents our "classical register." You can think of this like the wire where our classical computer will read from to get the values of each qubit. The register has 2 outputs (shown by that `2` hovering next to the `c`), one for each qubit. So here we have qubit $$q_0$$ outputting to classical register $$c_0$$ and qubit $$q_1$$ outputting to register $$c_1$$.
 
-For now, you can think of us measuring qubit `q0` and outputing the result to classical register `c0`, as well as measuring qubit `q1` and putting the result in register `c1`. Our old classical computers can then read from the register to get our results.
+There's only one way to get data from a qubit - that is to "measure it." That is what those meter icons represent. You measure a qubit and the result gets sent to the classical register. This touches on a core feature of quantum computing - the idea of superposition, measurement, and risking the life of Schrödinger's cat - but we'll get to that in the future.
 
-So from the above diagram we'd read the values of `c0` and `c1` and get `00` because `q0` and `q1` are both initialized to $$\ket{0}$$.
+So from the above diagram we'd read the values of $$c_0$$ and $$c_1$$ and get `00` because $$q_0$$ and $$q_1$$ are both initialized to $$\ket{0}$$.
 
 ### SWAP Gate
 
 ![SWAP Gate](../images/multiverse-part-2/quantum-swap-gate.jpg){: height="200" }
 
-A swap gate is very simple. It simply swaps the inputs. If `q0` is $$\ket{1}$$ and `q1` is $$\ket{0}$$ then after the gate `q0` becomes $$\ket{0}$$ and `q1` becomes $$\ket{1}$$. Our registers would read `01` after the measurements.
+A swap gate is very simple. It simply swaps the inputs. If `q0` is $$\ket{1}$$ and `q1` is $$\ket{0}$$ then after the gate `q0` becomes $$\ket{0}$$ and `q1` becomes $$\ket{1}$$. Our classical registers would read `01` after the measurements.
+
+Here's a table to map all combinations of $$\ket{0}$$ and $$\ket{1}$$:
+
+| $$q_0$$     | $$q_1$$     | $$c_0$$ | $$c_1$$ |
+| ----------- | ----------- | ------- | ------- |
+| $$\ket{0}$$ | $$\ket{0}$$ | 0       | 0       |
+| $$\ket{0}$$ | $$\ket{1}$$ | 1       | 0       |
+| $$\ket{1}$$ | $$\ket{0}$$ | 0       | 1       |
+| $$\ket{1}$$ | $$\ket{1}$$ | 1       | 1       |
 
 ### CNOT Gate
 

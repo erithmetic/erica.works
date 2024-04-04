@@ -156,3 +156,5 @@ And that's it! These are the building blocks to creating all kinds of fun quantu
 ![Scenes from the movie "Everything, Everywhere, All at Once"](../images/multiverse-part-2/everything.png){: height="200" }
 
 But please beware! Any time we put a qubit into superposition and measure it, we are creating two new universes, one where the qubit is 0 and the other where it is 1. So please limit this operation so that the multiverse doesn't run out of memory 😅
+
+Next article: [Part 3 - Superposition and Probability](/programming-the-multiverse-part-3/)

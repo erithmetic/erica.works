@@ -58,3 +58,5 @@ If we had a 25% chance of 0 and a 75% chance of 1, it would be $$\ket{\psi} = \f
 ## Back to the H gate
 
 So the H gate is doing something to manipulate those probability amplitudes, _a_ and _b_. But How? And how does it move each one from 0% or 100% to 50%? Stay tuned for Part 4.
+
+Next article: [Part 4 - The Guts of Gates](/programming-the-multiverse-part-4/)

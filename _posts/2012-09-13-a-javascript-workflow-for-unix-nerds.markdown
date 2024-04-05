@@ -490,7 +490,6 @@ Together, npm packages, command-line testing and build tools, and modular code o
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">derek</span></span>
 
       
 

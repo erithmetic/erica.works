@@ -70,7 +70,7 @@ When we run this in our jupyter notebook we see this:
 
 ![A screenshot of the above code and drawing in a jupyter notebook](../images/multiverse-part-5/swap-notebook.png)
 
-Qiskit can also draw your circuits using LaTeX or even ASCII art. The mpl format used above requires
+Qiskit can also draw your circuits using LaTeX or even ASCII art.
 
 Another handy tool is that qiskit will show you the matrix representation of any piece of your circuit. Let's look at the SWAP gate:
 

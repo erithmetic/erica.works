@@ -105,3 +105,5 @@ $$
  0 & 0 & 0 & 1  \\
  \end{bmatrix}
 $$
+
+Now we have all the tools we need to build all kinds of quantum circuits and evaluate their behavior using unitary matrices.

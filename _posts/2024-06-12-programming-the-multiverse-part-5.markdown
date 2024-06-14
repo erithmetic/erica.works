@@ -86,11 +86,10 @@ qc = QuantumCircuit(q, c)
 qc.swap(0,1)
 # NOTE: we cannot measure if we want a unitary!
 
-simulator = Aer.get_backend('aer_simulator')
-qc.save_unitary()
+simulator = Aer.get_backend('unitary_simulator')
 result = simulator.run(qc).result()
 unitary = result.get_unitary(qc)
-display(Markdown(array_to_latex(array=unitary, source=True)))
+unitary.draw('latex')
 ```
 
 The above code re-creates the circuit because we can't use the one above that has measurements added to it. It then creates an "ideal" quantum computer simulator (we'll explore ideal vs real quantum computers later) and runs the simulation, extracting the "unitary" matrix that represents the gate. "Unitary" is just another name for the matrix representation of our logic gates. We'll see later that we can build single unitaries out of combinations of multiple gates.
@@ -106,4 +105,17 @@ $$
  \end{bmatrix}
 $$
 
-Now we have all the tools we need to build all kinds of quantum circuits and evaluate their behavior using unitary matrices.
+You can also output the state vector using a similar method:
+
+```python
+simulator = Aer.get_backend('statevector_simulator')
+result = simulator.run(qc).result()
+state = result.get_statevector(qc)
+state.draw('latex')
+```
+
+Which outputs the state vector representing the combined state of the two qubits:
+
+$$\ket{00}$$
+
+Now we have all the tools we need to build all kinds of quantum circuits and evaluate their behavior using unitary matrices and state vectors.

@@ -90,7 +90,7 @@ A classical computer is limited in how many of these gate operations it can perf
 
 You've seen how logic gates work in classical computers operating on bits of information represented by electrical pulses. But we need to completely forget about all of that. We're in quantum world now! Starting out, QC and classic logic gates will seem similar, but we'll see that QC is a complete shift in how we think of computing.
 
-Now let's dive into some of the foundational quantum gates. For now we're just going to focus on their behavior but just know that the way these logical gates are implemented in actual quantum coputers vary and are still under constant development and innovation.
+Now let's dive into some of the foundational quantum gates. For now we're just going to focus on their behavior but just know that the way these logical gates are implemented in actual quantum computers vary and are still under constant development and innovation.
 
 ### Quantum circuit diagrams
 
@@ -98,15 +98,15 @@ Now let's dive into some of the foundational quantum gates. For now we're just g
 
 Here is the most basic quantum circuit diagram in the world. It does absolutely nothing, except measure the values of two qubits. Let's break it down:
 
-$$q_0$$ and $$q_1$$ are two qubits. By convention, they are intialized to $$\ket{0}$$.
+$$q_0$$ and $$q_1$$ are two qubits. By convention, they are initialized to $$\ket{0}$$.
 
-Whoah, wait a minute! What's this $$\ket{0}$$ thing? Well for now you can think of it just like a regular binary 0 from the classical world. $$\ket{1}$$ represents a 1. It's pronounced "ket-zero" or "ket-one."
+Woah, wait a minute! What's this $$\ket{0}$$ thing? Well for now you can think of it just like a regular binary 0 from the classical world. $$\ket{1}$$ represents a 1. It's pronounced "ket-zero" or "ket-one."
 
 Back to the diagram, the `c` represents our "classical register." You can think of this like the wire where our classical computer will read from to get the values of each qubit. The register has 2 outputs (shown by that `2` hovering next to the `c`), one for each qubit. So here we have qubit $$q_0$$ outputting to classical register $$c_0$$ and qubit $$q_1$$ outputting to register $$c_1$$.
 
 There's only one way to get data from a qubit - that is to "measure it." That is what those meter icons represent. You measure a qubit and the result gets sent to the classical register. This touches on a core feature of quantum computing - the idea of superposition, measurement, and risking the life of Schrödinger's cat - but we'll get to that in the future.
 
-So from the above diagram we'd read the values of $$c_0$$ and $$c_1$$ and get `00` because $$q_0$$ and $$q_1$$ are both initialized to $$\ket{0}$$.
+According to the above diagram we'd read the values of $$c_0$$ and $$c_1$$ and get `01`.
 
 ### SWAP Gate
 

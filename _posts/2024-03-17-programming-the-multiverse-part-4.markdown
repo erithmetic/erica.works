@@ -221,7 +221,7 @@ $$
 
 We have a 100% chance of getting a combined state of $$\ket{10}$$. In other words, $$q_0=\ket{1}$$ and $$q_1 = \ket{0}$$
 
-You can view the python code for this operation here.
+You can view the python code for this operation [here](https://github.com/erithmetic/programming-the-multiverse/blob/main/part-4/01-swap-matrix.ipynb).
 
 ### Performing the swap
 

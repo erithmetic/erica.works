@@ -7,13 +7,15 @@ categories: quantum_computing
 
 Welcome to _Programming the Multiverse_, a blog series introduction to quantum computing for imperative programmers!
 
+_Note: You can skip to the table of contents [here](#table-of-contents)_
+
 If you're familiar with programming with classical languages, such as Python, Ruby, or Java, and you have seen binary logic gates (NOT, OR, AND) before, this guide is for you!
 
 The goal of this series is to get you familiar with how quantum algorithms work and have some fun with some programming problems. The intention is to introduce topics gently and intuitively, rather than using lots of jargon, diving straight into Bloch Spheres, or showing off fancy equations (we'll keep them super simple).
 
 ## What is Quantum Computing?
 
-Anything that uses the term "quantum" means using some of the special properties of subatomic particles like entanglement, superposition, and tunneling. We'll get into what that means later. But unlike "classical" computers (i.e. the computers you use on a daily basis), quantum computers (QC) use these weird (some would say "spooky!") quantum behaviors to their advantage.
+Anything that uses the term "quantum" means using some of the special physical properties of subatomic particles like entanglement, superposition, and tunneling. We'll get into what that means later. But unlike "classical" computers (i.e. the computers you use on a daily basis), quantum computers (QC) use these weird (some would say "spooky!") quantum behaviors to their advantage.
 
 ## Classical computers are boring, but reliable
 
@@ -25,7 +27,7 @@ QC has traditionally been a hammer in search of nails, but some uses are slowly 
 
 ## Wait what does the Multiverse have to do with this?
 
-One explanation for how quantum mechanics operates (the ["Many Worlds" interpretation](https://en.wikipedia.org/wiki/Many-worlds_interpretation)) states that every possible thing that can happen is randomly chosen and plays out in an infinite number of parallel universes. You just happen to be traveling down a certain strand of reality. With quantum computing, we get to "harness" this quantum randomness to solve unique problems.
+One explanation for how quantum mechanics operates (the ["Many Worlds" interpretation](https://en.wikipedia.org/wiki/Many-worlds_interpretation)) states that every possible thing that can happen plays out in an infinite number of parallel universes branching out from the present. You just happen to be traveling down a certain branch of reality. With quantum computing, in a sense it's like getting to define the possible set of multiverses that emerge from the present.
 
 So prepare for a mind-bending ride!
 

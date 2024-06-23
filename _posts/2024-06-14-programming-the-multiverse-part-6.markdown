@@ -86,6 +86,8 @@ qc.cx(0,1)
 qc.h(0)
 ```
 
+_You can view the code for this part [here](https://github.com/erithmetic/programming-the-multiverse/tree/main/part-6)._
+
 Starting out, our qubits are in the following states:
 
 $$

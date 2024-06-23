@@ -114,31 +114,76 @@ And we transform the resulting matrix back into bra-ket notation by putting $$C_
 
 $$0\ket{0} + 1\ket{1} = \ket{1}$$
 
-We've done it! We flipped the bit!
+We've done it! We flipped the qubit!
 
 ## More inputs, bigger matrices
 
-We just did the math for a quantum gate with a single input, but let's see how we do it with a gate with two inputs. Let's work with the SWAP:
+We just did the math for a quantum gate operating on a single qubit using a dot product. But let's see what happens with a gate operating on two qubits. Let's work with the SWAP:
 
 ![A plain SWAP that has two inputs](../images/multiverse-part-4/quantum-swap-gate.jpg){: height="200" }
 
-Out input vector will always be an $$m \times 1$$ matrix, so we have to work some alchemy craft a new super qubit out of our two individual qubits. Our new super qubit represents the probability of getting every combination of states that can come out of our individual qubits. So given we have two qubits $$q_0$$ and $$q_1$$:
+The SWAP gate is represented by this magic matrix:
 
 $$
-q_{0} = a\ket{0} + b\ket{1}
+\left[ \begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1
+\end{array} \right]
 $$
 
+We need to do a dot product against our qubit vectors, but they're too small to work with that matrix built for two inputs. We need a bigger vector!
+
+### A global representation of our qubit state
+
+Earlier, we converted our qubit's Dirac notation representation of $$q_0 = a\ket{0} + b\ket{1}$$ into a vector that looks like:
+
 $$
-q_{1} = c\ket{0} + d\ket{1}
+q_0 = \left[ \begin{array}{c} a \\ b \end{array} \right]
 $$
 
-We do what's called a **tensor product** of the two vectors. Now you can sound fancy at your next cocktail party and talk about tensors. Oooohhh! Tensors!!
+And we can do the same with qubit $$q_1$$:
+
+$$
+q_{1} = c\ket{0} + d\ket{1} = \left[ \begin{array}{c} c \\ d \end{array} \right]
+$$
+
+What we want now is a vector representing the probabilities of getting every combination of each qubit's possible values:
 
 $$
 q_{0} \otimes q_{1} = ac\ket{00} + ad\ket{01} + bc\ket{10} + bd\ket{11}
 $$
 
-Let's set $$q_0$$ and $$q_1$$ to $$\ket{1}$$ and $$\ket{0}$$:
+We some alchemy at our disposal, an arcane tool called a **tensor product** (more specifically, a Kronecker product) we can perform on the two vector matrices. Now you can sound fancy at your next cocktail party and talk about tensors.
+
+![Two people at a cocktail party, one of them is saying, "tell me more about these tensors."](../images/multiverse-part-4/tell-me-more-tensors.jpg){: height="300" }
+
+### How to do a tensor product
+
+For two matrices `A` and `B`, where the dimensions of `A` are $$m \times n$$ and the dimensions of `B` are $$p \times q$$, we get a new matrix `C` that has dimensions $$pm \times qn$$.
+
+When we do a tensor product of our qubits, we essentially create a grid with all the possible combinations of each element of `A` and each element of `B`:
+
+$$
+A \otimes B
+=
+\left[ \begin{array}{c} A_{1,1} \\ A_{2,1} \end{array} \right] \otimes \left[ \begin{array}{c} B_{1,1} \\ B_{2,1} \end{array} \right]
+=
+\left[
+  \begin{array}{c}
+    A_{1,1} \times B_{1,1}
+    \\
+    A_{1,1} \times B_{2,1}
+    \\
+    A_{2,1} \times B_{1,1}
+    \\
+    A_{2,1} \times B_{2,1}
+  \end{array}
+\right]
+$$
+
+So plugging our numbers in for our two qubits, let's set $$q_0$$ to $$\ket{1}$$ and $$q_1$$ to $$\ket{0}$$:
 
 $$
 q_{0} = 0\ket{0} + 1\ket{1}
@@ -149,22 +194,38 @@ q_{1} = 1\ket{0} + 0\ket{1}
 $$
 
 $$
-q_{0} \otimes q_{1} = (0 \times 1)\ket{00} + (0 \times 0)\ket{01} + (1 \times 1)\ket{10} + (1 \times 0)\ket{11}
-$$
-
-Which we gives us:
-
-$$
-0\ket{00} + 0\ket{01} + 1\ket{10} + 0\ket{11}
-$$
-
-And we can put that into a vector matrix:
-
-$$
+q{0} \otimes q{1}
+=
+\left[ \begin{array}{c} 0 \\ 1 \end{array} \right] \otimes \left[ \begin{array}{c} 1 \\ 0 \end{array} \right]
+=
+\left[
+  \begin{array}{c}
+    0 \times 1
+    \\
+    0 \times 0
+    \\
+    1 \times 1
+    \\
+    1 \times 0
+  \end{array}
+\right]
+=
 \left[ \begin{array}{c} 0 \\ 0 \\ 1 \\ 0 \end{array} \right]
 $$
 
-We then multiply it times the magic matrix that represents a SWAP and get our new output vector (I'm not going to work through all the matrix multiplication again, that's for you to do for "fun"):
+Finally, converting that vector back into our Dirac notation, we have:
+
+$$
+q_{0} \otimes q_{1} = 0\ket{00} + 0\ket{01} + 1\ket{10} + 0\ket{11}
+$$
+
+We have a 100% chance of getting a combined state of $$\ket{10}$$. In other words, $$q_0=\ket{1}$$ and $$q_1 = \ket{0}$$
+
+You can view the python code for this operation here.
+
+### Performing the swap
+
+Now we can do a regular dot product between the magic matrix that represents a SWAP gate and the vector representing the combined state of our qubits. We get a new output vector that represents the combined states of our qubits after the fact.
 
 $$
 \left[ \begin{array}{cccc}

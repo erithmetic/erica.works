@@ -119,3 +119,5 @@ Which outputs the state vector representing the combined state of the two qubits
 $$\ket{00}$$
 
 Now we have all the tools we need to build all kinds of quantum circuits and evaluate their behavior using unitary matrices and state vectors.
+
+Next article: [Part 6 - Kickbacks](/programming-the-multiverse-part-6/)

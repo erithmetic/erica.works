@@ -257,3 +257,5 @@ And that's the magic behind a Freaky Qubit Friday!
 ![A plain SWAP that has two inputs](../images/multiverse-part-4/freaky-friday.png){: height="200" }
 
 OK that's enough math for now, and trust me, you won't normally need to do any matrix multiplication by hand unless you need to deeply debug something. But it's good to know why everything is happening. But eventually you'll be able to just glance at a matrix and see some patterns, like [identity matrices](https://en.wikipedia.org/wiki/Identity_matrix), that give you an idea of what's going to happen when you apply it.
+
+Next article: [Part 5 - Finally, Some Programming!](/programming-the-multiverse-part-5/)

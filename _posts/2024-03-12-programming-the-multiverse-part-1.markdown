@@ -21,7 +21,7 @@ Anything that uses the term "quantum" means using some of the special physical p
 
 Classical computers are great when you want to perform a scripted task quickly. They excel at CRUD operations - creating, reading, updating, and deleting data.
 
-## Quantum computers are weird, and...probably useful for something?
+## Quantum computers are weird, but useful
 
 QC has traditionally been a hammer in search of nails, but some uses are slowly emerging. AI and QC seem to be a promising match as well as optimizing logistical problems. Instead of scripting out a process in steps, QC finds optimal paths through forests of data. Whereas classical computers try to Hulk Smash their way into a building, QC tries all the possible secret entrances simultaneously. But quantum computers are also a little flakey at the moment. Today they require strategies to reduce "noise" and multiple runs to get a set of results that give you an "average" answer.
 

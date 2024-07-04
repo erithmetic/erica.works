@@ -140,27 +140,55 @@ In order to do the math for multiple gates in a row, we do a dot product to the 
 
 ![A diagram of two SWAP gates in series](../images/multiverse-part-6/swap-series-diagram.png)
 
-When we have gates in series, we simply do a dot product of each gate's matrices and the initial state vector. For our example, let's say $$q_1 = \ket{1}$$.
+When we have gates in series, we do a dot product of each gate's matrices in reverse order and we multiply them by the initial state vector which is always the last item in the equation. For our example, let's say $$q_1 = \ket{1}$$.
 
 $$
+\overbrace{
 \left[ \begin{array}{cccc}
 1 & 0 & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 0 & 1
 \end{array} \right]
-\cdot
+}^{\text{SWAP 2}}
+\overbrace{
 \left[ \begin{array}{cccc}
 1 & 0 & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 0 & 1
 \end{array} \right]
-\cdot
+}^{\text{SWAP 1}}
+\overbrace{
+\left[ \begin{array}{c} 0 \\ 1 \\ 0 \\ 0 \end{array} \right]
+}^{\text{Initial State}}
+$$
+
+We'll start by multiplying the initial state by SWAP 1. We now get:
+
+$$
+\overbrace{
+\left[ \begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1
+\end{array} \right]
+}^{\text{SWAP 2}}
+\overbrace{
+\left[ \begin{array}{c} 0 \\ 0 \\ 1 \\ 0 \end{array} \right]
+}^{\text{Current State}}
+$$
+
+Notice that our statevector represents $$\ket{10}$$. Finally, finish multiplying the current state by SWAP 2 and we get:
+
+$$
 \left[ \begin{array}{c} 0 \\ 1 \\ 0 \\ 0 \end{array} \right]
 $$
 
-If we only did one swap, we'd end up with $$q_0 = \ket{1}$$ and $$q_1 = \ket{0}$$. But with two swaps, we end up with $$q_0 = \ket{0}$$ and $$q_1 = \ket{1}$$ again. Let's do the matrix multiplication on the first two matrices representing the gates:
+And we're back to $$\ket{01}$$. Our double-swap left our two qubits back in their original state.
+
+If we had started from the left side and multiplied our two SWAP gates, we would get:
 
 $$
 \left[ \begin{array}{cccc}
@@ -169,7 +197,6 @@ $$
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1
 \end{array} \right]
-\cdot
 \left[ \begin{array}{c} 0 \\ 1 \\ 0 \\ 0 \end{array} \right]
 $$
 
@@ -186,7 +213,7 @@ Looking at our kickback diagram, we have 3 columns of gates:
 The entire circuit (the "composite system") can be built from the following equation:
 
 $$
-\ket{\psi} = A \cdot B \cdot C \cdot (q_0 \otimes q_1)
+\ket{\Psi} = C \cdot B \cdot A \cdot (q_0 \otimes q_1)
 $$
 
 For $$A$$ we can do a tensor product of the H and X gates:
@@ -194,17 +221,21 @@ For $$A$$ we can do a tensor product of the H and X gates:
 $$
 A
 =
+\overbrace{
 \left[ \begin{array}{cc}
   \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
   \\
   \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
 \end{array} \right]
+}^{\text{H Gate}}
 \otimes
+\overbrace{
 \left[ \begin{array}{cc}
   0 & 1
   \\
   1 & 0
 \end{array} \right]
+}^{\text{X Gate}}
 =
 \begin{bmatrix}
   0 & 0 & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}  \\
@@ -221,17 +252,21 @@ For $$C$$ we need to use some cleverness. Nothing happens to $$q_1$$ in column C
 $$
 C
 =
+\overbrace{
 \left[ \begin{array}{cc}
   \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
   \\
   \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
 \end{array} \right]
+}^{\text{H Gate}}
 \otimes
+\overbrace{
 \left[ \begin{array}{cc}
   1 & 0
   \\
   0 & 1
 \end{array} \right]
+}^{\text{Identity}}
 =
 \begin{bmatrix}
 \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 0 & 0  \\
@@ -244,28 +279,34 @@ $$
 Our full equation is:
 
 $$
-\ket{\psi}
+\ket{\Psi}
 =
+\overbrace{
 \begin{bmatrix}
   0 & 0 & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}  \\
   0 & 0 & \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2}  \\
   \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 0 & 0  \\
   \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2} & 0 & 0  \\
 \end{bmatrix}
+}^{C}
 \cdot
+\overbrace{
 \begin{bmatrix}
   1 & 0 & 0 & 0  \\
   0 & 0 & 0 & 1  \\
   0 & 0 & 1 & 0  \\
   0 & 1 & 0 & 0  \\
 \end{bmatrix}
+}^{B}
 \cdot
+\overbrace{
 \begin{bmatrix}
 \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 0 & 0  \\
  \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2} & 0 & 0  \\
  0 & 0 & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}  \\
  0 & 0 & \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2}  \\
  \end{bmatrix}
+}^{A}
 \cdot
 (q_0 \otimes q_1)
 $$
@@ -273,7 +314,7 @@ $$
 All of this multiplies out to:
 
 $$
-\ket{\psi}
+\ket{\Psi}
 =
 \begin{bmatrix}
 \frac{1}{2} & - \frac{1}{2} & \frac{1}{2} & \frac{1}{2}  \\

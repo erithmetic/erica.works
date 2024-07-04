@@ -225,7 +225,7 @@ You can view the python code for this operation [here](https://github.com/erithm
 
 ### Performing the swap
 
-Now we can do a regular dot product between the magic matrix that represents a SWAP gate and the vector representing the combined state of our qubits. We get a new output vector that represents the combined states of our qubits after the fact.
+Now we can do a regular dot product between the magic matrix that represents a SWAP gate and the vector representing the combined state of our qubits. Note that the initial state vector is always on the right-hand side. When we do the multiplication we get a new output vector that represents the combined states of our qubits after the fact.
 
 $$
 \left[ \begin{array}{cccc}
@@ -234,7 +234,6 @@ $$
 0 & 1 & 0 & 0 \\
 0 & 0 & 0 & 1
 \end{array} \right]
-\cdot
 \left[ \begin{array}{c} 0 \\ 0 \\ 1 \\ 0 \end{array} \right]
 =
 \left[ \begin{array}{c} 0 \\ 1 \\ 0 \\ 0 \end{array} \right]

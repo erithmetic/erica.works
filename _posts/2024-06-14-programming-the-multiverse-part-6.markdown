@@ -134,9 +134,11 @@ Note that above, the negative is only applied to the probability amplitude of ge
 
 In this post we let qiskit/python do all the matrix math here, but it's interesting and useful to show how you would actually use matrix multiplication to represent what just happend.
 
-Previously, in [part 4](/programming-the-multiverse-part-4/), we did some simple tensor products with a single gate matrix and a pair of qubits represented as a 4-row state vector. But now that we have multiple gates in a row, we have to do some more tricks.
+### A quick look at how to calculate multiple gate operations
 
-In order to do the math for multiple gates in a row, we do a dot product to the series of gates on the state vector. Let's see how this works for two SWAP gates in a row:
+Previously, in [part 4](/programming-the-multiverse-part-4/), we multiplied a state vector times a single gate matrix. In order to work with multiple qubits, did some simple tensor products on the qubits' individual state vectors to generate a combined state vector.
+
+But now that we have multiple gates in a row, we have to do some more tricks. We have to do a dot product between the series of gates and the state vector. Let's see how this works for two SWAP gates in a row:
 
 ![A diagram of two SWAP gates in series](../images/multiverse-part-6/swap-series-diagram.png)
 
@@ -204,7 +206,7 @@ Notice that cool pattern of ones along the diagonal? That's called an **identity
 
 ### When gates are uneven
 
-In our kickback example, we did different gate operations on each qubit. So how do we represent that with matrices? If you said, "let's use the same tensor product alchemy we used to create our 4-row state vector from two qubits," you'd be exactly right!
+In our kickback example, we did different gate operations on each qubit. So how do we represent that with matrices? If you said, "let's use the same tensor product alchemy we used to create our 4-row state vector from two qubits" you'd be exactly right!
 
 Looking at our kickback diagram, we have 3 columns of gates:
 

@@ -328,7 +328,7 @@ $$
   \begin{bmatrix}
   0 \\ 0 \\ \frac{\sqrt{2}}{2} \\ - \frac{\sqrt{2}}{2}
   \end{bmatrix}
-}^{\ket{11}}
+}^{\frac{\sqrt{2}}{2}\ket{10} - \frac{\sqrt{2}}{2}\ket{11}}
 $$
 
 Notice the negative phase on the state where $$q_0 = \ket{1}$$ and $$q_1 = -\ket{1}$$. The other state means our H gate flipped $$q_1$$ to be $$\ket{0}$$ so we lose the negative phase.

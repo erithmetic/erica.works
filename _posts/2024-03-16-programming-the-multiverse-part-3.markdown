@@ -31,7 +31,7 @@ Every qubit can be described by a formula:
 
 $$\ket{\psi} = a\ket{0} + b\ket{1}$$
 
-If you recall, we pronounce it "ket-zero" and "ket-one." We're using "bra-ket" notation here. No, this does not have anything to do with anesthesia and intimate apparel, it's just signifying that we're talking about vectors (more on that later).
+If you recall, we pronounce it "ket-zero" and "ket-one." Here we're using **Bra-Ket Notation**. No, this does not have anything to do with anesthesia and intimate apparel, it's just signifying that we're talking about vectors (more on that later). It's also called **Dirac Notation**.
 
 The variables _a_ and _b_ are called the **Probability Amplitude**. The way this formula works is that _a_ and _b_ have to add up, such that $$\vert{a}\vert^{2} + \vert{b}\vert^{2} = 1$$. So in this formula, the total probability is 1 (100%) and the squares of the probabilities, _a_ and _b_ add up to 1.
 

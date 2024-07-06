@@ -57,17 +57,15 @@ Phase is like being able to dynamically set the color of the die. For example we
 
 The phase does not affect the probability of whether the qubit is a $$\ket{0}$$ or a $$\ket{1}$$. But it comes into play when we apply gates to it.
 
-<!-- Remember when we said the qubit is represented by this formula $$a\ket{0} + b\ket{1}$$ such that $$\vert{a}\vert^{2} + \vert{b}\vert^{2} = 1$$. When we have a negative phase, we put the negative inside b's absolute value, like so: $$\vert{a}\vert^{2} + \vert{-1 * b}\vert^{2} = 1$$ so that the probability still adds up to 1 as expected. So no matter the phase, `a` and `b` remain the same and our probability still adds up. -->
-
 ## Getting kickbacks
 
-In fact, the ability to change phase gives us a new tool &mdash; **phase kickback**! Let's see how it works.
+In fact, the ability to change phase gives us a new tool &mdash; **Phase Kickback**! This phenomenon applies to "controlled" gates like the CNOT. Let's see how it works.
 
-In order for the kickback to happen we have to be using a controlled gate, like our CNOT. We also have to put the control qubit into superposition (using the Hadamard gate).
+In order for the kickback to happen, the phase of the target qubit has to be negative. Its phase then gets transferred or "kicked back" up to the control qubit when the gate is applied.
 
-Let's create a circuit that does just that but initializes qubit $$q_1$$ to the $$\ket{1}$$ state.
+Let's create a circuit that does just that. To start out, we need both our qubits initialized to $$\ket{1}$$ and we need to get our target into a negative phase (yes we'll turn our qubit into a goth kid). We'll use our handy H gate for that. By running this circuit we'll copy the negative phase of $$q_1$$ into $$q_0$$.
 
-![A CNOT with an H gate on the control](../images/multiverse-part-6/kickback-circuit.png){: height="200" }
+![A CNOT with a negative phase on the target](../images/multiverse-part-6/kickback-circuit.png){: height="200" }
 
 Here's the code to generate the above circuit:
 
@@ -80,23 +78,13 @@ q = QuantumRegister(2, 'q')
 c = ClassicalRegister(2, 'c')
 qc = QuantumCircuit(q, c)
 
-qc.h(0)
+qc.x(0)
 qc.x(1)
+qc.h(1)
 qc.cx(0,1)
-qc.h(0)
 ```
 
 _You can view the code for this part [here](https://github.com/erithmetic/programming-the-multiverse/tree/main/part-6)._
-
-Starting out, our qubits are in the following states:
-
-$$
-q_0 = 1\ket{0} + 0\ket{1}
-$$
-
-$$
-q_1 = 0\ket{0} + 1\ket{1}
-$$
 
 Let's use Qiskit's statevector output to see what $$q_0$$ and $$q_1$$ look like after applying the gates:
 
@@ -109,30 +97,23 @@ Statevector(qc).draw('latex')
 When we examine our resulting state vector, we see:
 
 $$
-\frac{1}{2} |00\rangle- \frac{1}{2} |01\rangle+\frac{1}{2} |10\rangle+\frac{1}{2} |11\rangle
+- \frac{\sqrt{2}}{2} \ket{01}
++ \frac{\sqrt{2}}{2} \ket{11}
 $$
 
-This respresents the probabilities of the combined states of $$q_0$$ and $$q_1$$. We now have a 25% chance of getting a state where $$q_0$$ is $$\ket{0}$$ and $$q_1$$ is $$\ket{1}$$ but that the phase is negative. But what is this really telling us? Let's break it down.
+**IMPORTANT**: Qiskit does something really weird that's important to know - it reverses the order of the qubits when it prints statevectors and run results. So where all the mathematical literature uses $$\ket{q_0 q_1}$$, Qiskit displays $$\ket{q_1 q_0}$$. They claim it's because they consider $$q_n$$ the most significant bit when you use qubits to represent binary numbers, but I think they're really just trolling people. If you want to output it in conventional order you can use:
 
-If we expand out the state $$-\ket{01}$$, we essentially have:
+```python
+Statevector(qc.reverse_bits()).draw('latex')
+```
 
-$$
-q_0 = 1\ket{0} + 0\ket{1}
-$$
-
-$$
-q_1 = 0\ket{0} - 1\ket{1}
-$$
-
-Just by running the control qubit, $$q_0$$, through the H gate, we were able to modify the phase of the target qubit, $$q_1$$! Cool!
+So $$- \frac{\sqrt{2}}{2} \ket{01} + \frac{\sqrt{2}}{2} \ket{11}$$ respresents the probabilities of the combined states of $$q_0$$ and $$q_1$$. Remembering that we square the probability amplitudes to get our probabilities of each state, we get a 50% chance where $$q_0 = -\ket{1}$$ and $$q_1 = \ket{0}$$ (note $$q_0$$'s negative phase). This means our CNOT flipped $$q_1$$ from $$\ket{1}$$ to $$\ket{0}$$ but $$q_1$$'s negative phase going into the gate got copied up to $$q_0$$. Rad!
 
 ![Touched by a Qubit in Superposition, a new TV show](../images/multiverse-part-6/touched-by-a-qubit.jpg){: height="300" }
 
-Note that above, the negative is only applied to the probability amplitude of getting a $$\ket{1}$$ (the $$b$$ term) and in $$q_0$$'s case, a negative zero wouldn't make sense.
-
 ## So what's actually going on in the land of matrices?
 
-In this post we let qiskit/python do all the matrix math here, but it's interesting and useful to show how you would actually use matrix multiplication to represent what just happend.
+In this post we let Qiskit/python do all the matrix math here, but it's interesting and useful to show how you would actually use matrix multiplication to represent what just happend.
 
 ### A quick look at how to calculate multiple gate operations
 
@@ -218,50 +199,42 @@ $$
 \ket{\Psi} = C \cdot B \cdot A \cdot (q_0 \otimes q_1)
 $$
 
-For $$A$$ we can do a tensor product of the H and X gates:
+The columns are in reverse order because we're doing a dot product of the gate matrices on the initial state vector and need to preserve the dimensions of the state vector throughout.
+
+For $$A$$ we can do a tensor product of the two X gates:
 
 $$
 A
 =
 \overbrace{
-\left[ \begin{array}{cc}
-  \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
-  \\
-  \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
-\end{array} \right]
-}^{\text{H Gate}}
+\begin{bmatrix}
+0 & 1
+\\
+1 & 0
+\end{bmatrix}
+}^{q_0 \text{ X Gate}}
 \otimes
 \overbrace{
-\left[ \begin{array}{cc}
-  0 & 1
-  \\
-  1 & 0
-\end{array} \right]
-}^{\text{X Gate}}
+\begin{bmatrix}
+0 & 1
+\\
+1 & 0
+\end{bmatrix}
+}^{q_1 \text{ X Gate}}
 =
 \begin{bmatrix}
-  0 & 0 & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}  \\
-  0 & 0 & \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2}  \\
-  \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 0 & 0  \\
-  \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2} & 0 & 0  \\
-\end{bmatrix}
+0 & 0 & 0 & 1  \\
+0 & 0 & 1 & 0  \\
+0 & 1 & 0 & 0  \\
+1 & 0 & 0 & 0
+ \end{bmatrix}
 $$
 
-For $$B$$ we just use the regular CNOT matrix since it spans all our qubits.
-
-For $$C$$ we need to use some cleverness. Nothing happens to $$q_1$$ in column C, right? That means that we can think of it as if we applied one of those identity matrices that does nothing to the qubit! So just like we did a tensor product for A, we'll do it for C between the H and the identity.
+For $$B$$ we need to use some cleverness. Nothing happens to $$q_0$$ in column B, right? That means that we can think of it as if we applied one of those identity matrices that does nothing to the qubit! So just like we did a tensor product for A, we'll do it for B between the identity and the H.
 
 $$
-C
+B
 =
-\overbrace{
-\left[ \begin{array}{cc}
-  \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
-  \\
-  \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
-\end{array} \right]
-}^{\text{H Gate}}
-\otimes
 \overbrace{
 \left[ \begin{array}{cc}
   1 & 0
@@ -269,14 +242,25 @@ C
   0 & 1
 \end{array} \right]
 }^{\text{Identity}}
+\otimes
+\overbrace{
+\left[ \begin{array}{cc}
+  \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+  \\
+  \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+\end{array} \right]
+}^{\text{H Gate}}
 =
+\frac{\sqrt{2}}{2}
 \begin{bmatrix}
-\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 0 & 0  \\
- \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2} & 0 & 0  \\
- 0 & 0 & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}  \\
- 0 & 0 & \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2}  \\
- \end{bmatrix}
+1 & 1 & 0 & 0  \\
+1 & -1 & 0 & 0  \\
+0 & 0 & 1 & 1  \\
+0 & 0 & 1 & -1
+\end{bmatrix}
 $$
+
+For $$C$$ we just use the regular CNOT matrix since it spans all our qubits.
 
 Our full equation is:
 
@@ -285,49 +269,88 @@ $$
 =
 \overbrace{
 \begin{bmatrix}
-  0 & 0 & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}  \\
-  0 & 0 & \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2}  \\
+  1 & 0 & 0 & 0  \\
+  0 & 1 & 0 & 0  \\
+  0 & 0 & 0 & 1  \\
+  0 & 0 & 1 & 0  \\
+\end{bmatrix}
+}^{\text{C (CNOT)}}
+\cdot
+\overbrace{
+  \begin{bmatrix}
   \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 0 & 0  \\
-  \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2} & 0 & 0  \\
+  \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} & 0 & 0  \\
+  0 & 0 & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}  \\
+  0 & 0 & \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2}
+  \end{bmatrix}
+}^{B}
+\cdot
+\overbrace{
+  \begin{bmatrix}
+  0 & 0 & 0 & 1  \\
+  0 & 0 & 1 & 0  \\
+  0 & 1 & 0 & 0  \\
+  1 & 0 & 0 & 0
+  \end{bmatrix}
+}^{A}
+\cdot
+\overbrace{
+  \begin{bmatrix}
+  1 \\
+  0 \\
+  0 \\
+  0 \\
+  \end{bmatrix}
+}^{\ket{00}}
+$$
+
+One thing to note here is that as the number of qubits increases, the size of the matrices needed to represent the whole quantum circuit exponentially increases. It becomes apparent that to simulate a quantum computer with a classical computer doing matrix multiplication it requires a ton of computing resources to execute. In fact, simulating around 50 qubits (requiring $$2^{50}\times2^{50}$$ matrices) becomes impossible with today's classical supercomputers.
+
+### The kickback in action
+
+So back to the question, how does the phase get kicked back from the control input into the target input?
+
+Let's multiply our A and B matrices with the initial state to calculate what happens up until the point where we send the qubits throught the CNOT gate.
+
+$$
+\ket{\Psi}
+=
+\overbrace{
+\begin{bmatrix}
+  1 & 0 & 0 & 0  \\
+  0 & 1 & 0 & 0  \\
+  0 & 0 & 0 & 1  \\
+  0 & 0 & 1 & 0  \\
 \end{bmatrix}
 }^{C}
 \cdot
 \overbrace{
-\begin{bmatrix}
-  1 & 0 & 0 & 0  \\
-  0 & 0 & 0 & 1  \\
-  0 & 0 & 1 & 0  \\
-  0 & 1 & 0 & 0  \\
-\end{bmatrix}
-}^{B}
-\cdot
-\overbrace{
-\begin{bmatrix}
-\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 0 & 0  \\
- \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2} & 0 & 0  \\
- 0 & 0 & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}  \\
- 0 & 0 & \frac{\sqrt{2}}{2} & - \frac{\sqrt{2}}{2}  \\
- \end{bmatrix}
-}^{A}
-\cdot
-(q_0 \otimes q_1)
+  \begin{bmatrix}
+  0 \\ 0 \\ \frac{\sqrt{2}}{2} \\ - \frac{\sqrt{2}}{2}
+  \end{bmatrix}
+}^{\ket{11}}
 $$
 
-All of this multiplies out to:
+Notice the negative phase on the state where $$q_0 = \ket{1}$$ and $$q_1 = -\ket{1}$$. The other state means our H gate flipped $$q_1$$ to be $$\ket{0}$$ so we lose the negative phase.
+
+When we expand out the matrix multiplication, we get:
 
 $$
 \ket{\Psi}
 =
 \begin{bmatrix}
-\frac{1}{2} & - \frac{1}{2} & \frac{1}{2} & \frac{1}{2}  \\
- - \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2}  \\
- \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & - \frac{1}{2}  \\
- \frac{1}{2} & \frac{1}{2} & - \frac{1}{2} & \frac{1}{2}  \\
- \end{bmatrix}
-\cdot
-(q_0 \otimes q_1)
+  (1\times0) + (0\times0) + (0\times\frac{\sqrt{2}}{2}) + (0\times-\frac{\sqrt{2}}{2})  \\
+  (0\times0) + (1\times0) + (0\times\frac{\sqrt{2}}{2}) + (0\times-\frac{\sqrt{2}}{2})  \\
+  (0\times0) + (0\times0) + (0\times\frac{\sqrt{2}}{2}) + (\textcolor{red}{1\times-\frac{\sqrt{2}}{2}})  \\
+  (0\times0) + (0\times0) + (1\times\frac{\sqrt{2}}{2}) + (0\times-\frac{\sqrt{2}}{2})  \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+  0  \\
+  0  \\
+  \textcolor{red}{-\frac{\sqrt{2}}{2}}  \\
+  \frac{\sqrt{2}}{2} \\
+\end{bmatrix}
 $$
 
-So that is how we do all the matrix math on complex series of gates on many qubits.
-
-One thing to note here is that as the number of qubits increases, the size of the matrices needed to represent the whole quantum circuit exponentially increases. It becomes apparent that to simulate a quantum computer with a classical computer doing matrix multiplication it requires a ton of computing resources to execute. In fact, simulating around 50 qubits becomes impossible with today's classical computers.
+So there we go, we went from a state of $$\frac{\sqrt{2}}{2}\ket{10} - \frac{\sqrt{2}}{2}\ket{11}$$ to a new state of $$-\frac{\sqrt{2}}{2}\ket{10} + \frac{\sqrt{2}}{2}\ket{11}$$. In the [next article](), we'll see how we can use this neat trick.

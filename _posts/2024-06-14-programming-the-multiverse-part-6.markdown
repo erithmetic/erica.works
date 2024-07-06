@@ -107,7 +107,7 @@ $$
 Statevector(qc.reverse_bits()).draw('latex')
 ```
 
-So $$- \frac{\sqrt{2}}{2} \ket{01} + \frac{\sqrt{2}}{2} \ket{11}$$ respresents the probabilities of the combined states of $$q_0$$ and $$q_1$$. Remembering that we square the probability amplitudes to get our probabilities of each state, we get a 50% chance where $$q_0 = -\ket{1}$$ and $$q_1 = \ket{0}$$ (note $$q_0$$'s negative phase). This means our CNOT flipped $$q_1$$ from $$\ket{1}$$ to $$\ket{0}$$ but $$q_1$$'s negative phase going into the gate got copied up to $$q_0$$. Rad!
+So $$- \frac{\sqrt{2}}{2} \ket{01} + \frac{\sqrt{2}}{2} \ket{11}$$ respresents the probabilities of the combined states of $$q_0$$ and $$q_1$$. Remembering that we square the probability amplitudes to get our probabilities of each state, we get a 50% chance where $$q_0 = -\ket{1}$$ and $$q_1 = -\ket{0}$$. This means our CNOT flipped $$q_1$$ from $$\ket{1}$$ to $$\ket{0}$$ but $$q_1$$'s negative phase going into the gate got copied up to $$q_0$$. Rad!
 
 ![Touched by a Qubit in Superposition, a new TV show](../images/multiverse-part-6/touched-by-a-qubit.jpg){: height="300" }
 
@@ -117,7 +117,7 @@ In this post we let Qiskit/python do all the matrix math here, but it's interest
 
 ### A quick look at how to calculate multiple gate operations
 
-Previously, in [part 4](/programming-the-multiverse-part-4/), we multiplied a state vector times a single gate matrix. In order to work with multiple qubits, did some simple tensor products on the qubits' individual state vectors to generate a combined state vector.
+Previously, in [part 4](/programming-the-multiverse-part-4/), we multiplied a single qubit's state vector times a single gate matrix. In order to work with a gate that operates on multiple qubits, we did some simple tensor products on the qubits' individual state vectors to generate a combined state vector.
 
 But now that we have multiple gates in a row, we have to do some more tricks. We have to do a dot product between the series of gates and the state vector. Let's see how this works for two SWAP gates in a row:
 
@@ -134,6 +134,7 @@ $$
 0 & 0 & 0 & 1
 \end{array} \right]
 }^{\text{SWAP 2}}
+\cdot
 \overbrace{
 \left[ \begin{array}{cccc}
 1 & 0 & 0 & 0 \\
@@ -142,9 +143,10 @@ $$
 0 & 0 & 0 & 1
 \end{array} \right]
 }^{\text{SWAP 1}}
+\cdot
 \overbrace{
 \left[ \begin{array}{c} 0 \\ 1 \\ 0 \\ 0 \end{array} \right]
-}^{\text{Initial State}}
+}^{\text{Current State } \ket{01}}
 $$
 
 We'll start by multiplying the initial state by SWAP 1. We now get:
@@ -158,9 +160,10 @@ $$
 0 & 0 & 0 & 1
 \end{array} \right]
 }^{\text{SWAP 2}}
+\cdot
 \overbrace{
 \left[ \begin{array}{c} 0 \\ 0 \\ 1 \\ 0 \end{array} \right]
-}^{\text{Current State}}
+}^{\text{Current State } \ket{10}}
 $$
 
 Notice that our statevector represents $$\ket{10}$$. Finally, finish multiplying the current state by SWAP 2 and we get:
@@ -353,4 +356,4 @@ $$
 \end{bmatrix}
 $$
 
-So there we go, we went from a state of $$\frac{\sqrt{2}}{2}\ket{10} - \frac{\sqrt{2}}{2}\ket{11}$$ to a new state of $$-\frac{\sqrt{2}}{2}\ket{10} + \frac{\sqrt{2}}{2}\ket{11}$$. In the [next article](), we'll see how we can use this neat trick.
+So there we go, we went from a state of $$\frac{\sqrt{2}}{2}\ket{10} - \frac{\sqrt{2}}{2}\ket{11}$$ to a new state of $$-\frac{\sqrt{2}}{2}\ket{10} + \frac{\sqrt{2}}{2}\ket{11}$$. In the [next article](/programming-the-multiverse-part-7/), we'll see how we can use this neat trick.

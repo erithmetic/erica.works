@@ -186,7 +186,7 @@ $$
 \left[ \begin{array}{c} 0 \\ 1 \\ 0 \\ 0 \end{array} \right]
 $$
 
-Notice that cool pattern of ones along the diagonal? That's called an **identity matrix**. It means the matrix does not change a vector you do a dot proct with. So our original state vector is unchanged after two swaps, as we'd expect.
+Notice that cool pattern of ones along the diagonal? That's called an **identity matrix**. It means the matrix does not change a vector you do a dot product with. So our original state vector is unchanged after two swaps, as we'd expect.
 
 ### When gates are uneven
 

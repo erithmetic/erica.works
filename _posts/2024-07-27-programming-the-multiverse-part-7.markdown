@@ -67,7 +67,7 @@ How would we implement this oracle? You may have already guessed that this invol
 
 ![The BernVaz oracle implemented with CNOTs](../images/multiverse-part-7/bern-vaz-impelmentation.png){: height="300" }
 
-The code for this is [here]().
+The code for this is [here](https://github.com/erithmetic/programming-the-multiverse/tree/main/part-7).
 
 ## The hulk-smash way of solving the oracle
 

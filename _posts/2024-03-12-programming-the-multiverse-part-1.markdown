@@ -38,3 +38,4 @@ So prepare for a mind-bending ride!
 - [Part 4 - The Guts of Gates](/programming-the-multiverse-part-4/)
 - [Part 5 - Finally, Some Programming!](/programming-the-multiverse-part-5/)
 - [Part 6 - Kickbacks](/programming-the-multiverse-part-6/)
+- [Part 7 - Solving the BernVaz Oracle](/programming-the-multiverse-part-7/)

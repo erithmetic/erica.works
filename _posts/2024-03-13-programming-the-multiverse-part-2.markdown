@@ -61,16 +61,16 @@ Here is the logical gate diagram for an adder:
 
 ![A logical XOR gate symbol](../images/multiverse-part-2/adder-gate.png)
 
-Our adder takes two inputs, A, and B, which represent each input bit. There are two output bits because adding 1 and 1 gives us a 2-bit result. For a result representing the binary value `10` C will be the first digit, `1`, in the result, and S will be the second digit, `0`. For a result of `01`, C will be `0` and S will be `1`.
+Our adder takes two inputs, A, and B, which represent each input bit. There are two output bits because adding 1 and 1 gives us a 2-bit result. For a result representing the binary value `01` C will be the first digit, `0`, and S will be the second digit, `1`. For a result of `10`, C will be `1` and S will be `0`.
 
 Here are the results of running the binary adder:
 
 | A   | B   | C   | S   |
 | --- | --- | --- | --- |
 | 0   | 0   | 0   | 0   |
-| 0   | 1   | 1   | 0   |
-| 1   | 0   | 1   | 0   |
-| 1   | 1   | 1   | 1   |
+| 0   | 1   | 0   | 1   |
+| 1   | 0   | 0   | 1   |
+| 1   | 1   | 1   | 0   |
 
 Go ahead and trace the result of each gate given each combination of 0 and 1 for A and B and see what you get.
 

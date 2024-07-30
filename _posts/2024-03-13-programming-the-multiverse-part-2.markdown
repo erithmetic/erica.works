@@ -9,11 +9,9 @@ In part 2 we'll go over some very simple quantum gates and explore our first con
 
 _Note: this post is part of my series, [Programming the Multiverse](/programming-the-multiverse-part-1/)_
 
-We're going to start with some basics. I mean, suuuuper basic. But it's an important first step. The way most people interact with quantum computers do so in a way that is similar to FPGAs in the classic world - i.e. hardware that you can program. The most popular way to write quantum algorithms these days is to use a library like Qiskit to define a quantum circuit. This circuit can then be "transpiled" and run on a real quantum computer. You can also just run your circuit in a simulator that runs on your local machine.
+We're going to start with some basics. I mean, suuuuper basic. But it's an important first step. Currently there are no widely-used programming languages for programming quantum computers the same way we write code for today's computers. The languages that do exist are very esoteric. Instead, quantum computers today are programmed using gates similar to the logic gates we use in today's computers. So, it's all very low level.
 
-At this point in time, we mostly work on the level of piecing together logic gates, as if we're building hard-wired circuits for single-purpose machines. There are not any widely-used "programming languages" for quantum computing. The languages that do exist tend to be pretty esoteric.
-
-So let's review logic gates in the classic world.
+So before we go into quantum gates and qubits, let's review logic gates from the classic world.
 
 ## Ye olde logick gates
 
@@ -21,7 +19,7 @@ You may remember these logical gate diagrams, like for the NOT gate:
 
 ![A logical NOT gate symbol](../images/multiverse-part-2/not-gate.png)
 
-This logical gate transforms a single bit, 0 into a 1 or a 1 into a 0. It's one of the basic building blocks of every CPU and computing device. Bits are combined to represent bytes of data which ultimately represent numbers and characters.
+This logical gate transforms a single bit, 0 into a 1 or a 1 into a 0. It's one of the basic building blocks of every CPU and computing device.
 
 ### AND Gate:
 
@@ -82,13 +80,13 @@ In classical computers, in a sense you can say the _data_ is moving around throu
 
 ![Logical gates combined into a large component](../images/multiverse-part-2/logic-gates-vlsi.png)
 
-Utlimately these logic gates form the thousands of building blocks that combine into our modern day, general purpose "integrated circuits" (e.g. CPUs). Our modern programming languages define a series of signals that get sent through this maze of gates. But it's important to note that every integrated circuit can implement the same logical gates using different types of electrical circuits.
+Utlimately these logic gates form the thousands of building blocks that combine into our modern day, general purpose "integrated circuits" (e.g. CPUs).
 
 A classical computer is limited in how many of these gate operations it can perform per second. For example an Intel i9 14900HX can run these gate operations up to 5,800,000,000 times per second. There is an upper limit on how many calculations a CPU can try per second to try and solve a problem.
 
 ## The fancy new quantum gates
 
-You've seen how logic gates work in classical computers operating on bits of information represented by electrical pulses. But we need to completely forget about all of that. We're in quantum world now! Starting out, QC and classic logic gates will seem similar, but we'll see that QC is a complete shift in how we think of computing.
+You've seen how logic gates work in classical computers operating on bits. Starting out, it may seem that quantum and classic logic gates are similar, but we'll see that quantum computing is a complete shift in how we think of computing.
 
 Now let's dive into some of the foundational quantum gates. For now we're just going to focus on their behavior but just know that the way these logical gates are implemented in actual quantum coputers vary and are still under constant development and innovation.
 

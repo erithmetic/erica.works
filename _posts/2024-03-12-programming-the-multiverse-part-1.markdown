@@ -39,3 +39,11 @@ So prepare for a mind-bending ride!
 - [Part 5 - Finally, Some Programming!](/programming-the-multiverse-part-5/)
 - [Part 6 - Kickbacks](/programming-the-multiverse-part-6/)
 - [Part 7 - Solving the BernVaz Oracle](/programming-the-multiverse-part-7/)
+
+## Sources
+
+If you're interested in learning more on your own, I highly suggest these sources that provided a lot of inspiration and information for this series:
+
+- [Intro to Quantum Computing for Everyone](https://www.edx.org/learn/quantum-computing/university-of-chicago-introduction-to-quantum-computing-for-everyone?index=product&objectID=course-e08ab5d6-00e1-4cab-8e00-12d05299e906) by the folks at EPiQ / UChicago, delivered by edX.
+- [Intro to Quantum Computing for Everyone 2](https://learning.edx.org/course/course-v1:UChicagoX+QUAN12000+2T2021/home)
+- [Qiskit Textbook](https://github.com/Qiskit/textbook) from IBM

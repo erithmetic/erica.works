@@ -51,15 +51,19 @@ So this means we have a qubit in this state: $$\frac{1}{\sqrt{2}}\ket{0} - \frac
 
 Earlier I mentioned that a qubit is like a spinning die where you might decide a roll of 1 through 3 represents a classical bit equal to 0 and a roll of 4 through 6 represents a classical bit equal to 1.
 
-![A screenshot of the above code and drawing in a jupyter notebook](../images/multiverse-part-6/colored-dice.jpg){: height="200" }
+![A pile of dice, each a different color](../images/multiverse-part-6/colored-dice.jpg){: height="200" }
 
-Phase is like being able to dynamically set the color of the die. For example we could say when it's blue, it's a positive phase and when it's red it's a negative phase.
+Phase is like each die having a color you can control with a dial. You can spin the dial to cycle through an infinite number of shades. Phase does not directly affect the probability of whether the qubit is a $$\ket{0}$$ or a $$\ket{1}$$. But you can use the phase for various tricks.
 
-The phase does not affect the probability of whether the qubit is a $$\ket{0}$$ or a $$\ket{1}$$. But it comes into play when we apply gates to it.
+![A color wheel with a dial in the middle](../images/multiverse-part-6/color-wheel-dial.png){: height="200" }
+
+When we have a negative phase, it's not setting the phase to a negative numeric value, but it is saying "the phase of your qubit has an opposite phase value compared to the global phase that all the qubits started out in." We'll see later that putting two qubits with opposite phase through certain gates causes certain $$\ket{0}$$ and $$\ket{1}$$ combinations to cancel out.
+
+If you look at the color wheel, you can think of qubits with opposite phase having complementary colors on the color wheel. Complementary colors look good next to each other but combining them results in a yucky brownish color. Other color combinations mix better to form new colors.
 
 ## Getting kickbacks
 
-In fact, the ability to change phase gives us a new tool &mdash; **Phase Kickback**! This phenomenon applies to "controlled" gates like the CNOT. Let's see how it works.
+Our first trick using phase is called **phase kickback**. This phenomenon applies to "controlled" gates like the CNOT. Let's see how it works.
 
 In order for the kickback to happen, the phase of the target qubit has to be negative. Its phase then gets transferred or "kicked back" up to the control qubit when the gate is applied.
 

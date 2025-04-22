@@ -23,7 +23,7 @@ What's going on? Here's where we have to finally delve into a little bit of math
 
 ## It's all probability
 
-The most important thing to remember is that qbits are never really representing actual data values, but they represent _probabilities_ of seeing a 0 or a 1. And the gates are just manipulating those probabilities.
+The most important thing to remember is that qubits are never really representing actual data values, but they represent _probabilities_ of seeing a 0 or a 1. And the gates are just manipulating those probabilities.
 
 When we say a qubit is $$\ket{0}$$ or $$\ket{1}$$ what we're saying is there's a 100% probability of seeing a 0 or a 1.
 

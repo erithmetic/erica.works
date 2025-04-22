@@ -5,7 +5,7 @@ date: 2024-03-17 09:12:17 -0500
 categories: quantum_computing
 ---
 
-In part 4 we're going to go over the logical internals of some of these gates to see how each gate manupilates a qubit's probability of being a 0 or 1.
+In part 4 we're going to go over the logical internals of some of these gates to see how each gate manipulates a qubit's probability of being a 0 or 1.
 
 _Note: this post is part of my series, [Programming the Multiverse](/programming-the-multiverse-part-1/)_
 
